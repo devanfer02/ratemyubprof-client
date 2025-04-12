@@ -1,0 +1,5 @@
+root=true
+
+[*.{tsx,jsx,js,ts}]
+indent_style = space
+indent_size = 2
