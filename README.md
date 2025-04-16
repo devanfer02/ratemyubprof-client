@@ -1,4 +1,12 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+![img](./public/assets/view.png)
+
+# RateMyUBProf
+
+RateMyUBProf is a web application designed to help students rate and review professors at their university precisely Brawijaya University so other students could prepare the best for their upcomming class professor.
+
+This is a [Next.js v15](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+
+For backend repository, you can it right in [this github repository](https://github.com/devanfer02/ratemyubprof-client)
 
 ## Getting Started
 
@@ -34,3 +42,11 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+
+## Other Stacks
+
+| Tech              | Description                                                                 |
+|-------------------|-----------------------------------------------------------------------------|
+| [ShadCN UI](https://ui.shadcn.com)         | Accessible, customizable UI components built with Tailwind and Radix UI.        |
+| [React Hook Form](https://react-hook-form.com) | Performant form validation with minimal re-renders and easy integration.        |
+| [Next Auth](https://next-auth.js.org/) | Complete open-source authentication solution for Next.js applications. 

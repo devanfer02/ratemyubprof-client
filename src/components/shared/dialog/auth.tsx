@@ -32,7 +32,7 @@ export default function AuthDialog(
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogTrigger asChild>
-        <Button variant="outline" onClick={onClick} className="text-white bg-ub-secondary hover:bg-white border border-ub-secondary hover:text-ub-secondary">{title}</Button>
+        <Button variant="outline" onClick={onClick} className="font-semibold text-white bg-ub-secondary hover:bg-white border border-ub-secondary hover:text-ub-secondary">{title}</Button>
       </DialogTrigger>
       <DialogContent className="sm:max-w-[525px]">
         <DialogHeader>
