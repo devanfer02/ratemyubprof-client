@@ -35,7 +35,7 @@ export default function AuthButtons() {
       setOpenDialog(dialogParam);
     }
 
-    if (!openDialog) {
+    if (!openDialog && dialogParam) {
       clearParams()
     }
 
