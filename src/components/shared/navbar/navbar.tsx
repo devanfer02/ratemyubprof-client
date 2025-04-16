@@ -47,8 +47,8 @@ const renderMenuItem = (item: MenuItem) => {
   if (item.items) {
     return (
       <NavigationMenuItem key={item.title}>
-        <NavigationMenuTrigger>{item.title}</NavigationMenuTrigger>
-        <NavigationMenuContent className="bg-popover text-popover-foreground">
+        <NavigationMenuTrigger className='bg-ub-primary'>{item.title}</NavigationMenuTrigger>
+        <NavigationMenuContent className="bg-ub-primary">
           {item.items.map((subItem) => (
             <NavigationMenuLink asChild key={subItem.title} className="w-80">
               <SubMenuLink item={subItem} />
@@ -61,12 +61,12 @@ const renderMenuItem = (item: MenuItem) => {
 
   return (
     <NavigationMenuItem key={item.title}>
-      <NavigationMenuLink
+      <a
         href={item.url}
-        className="group inline-flex h-10 w-max items-center justify-center rounded-md bg-background px-4 py-2 text-sm font-medium transition-colors hover:bg-muted hover:text-accent-foreground"
+        className="group inline-flex h-10 w-max items-center justify-center rounded-md px-4 py-2 text-sm transition-colors hover:text-ub-secondary text-white font-semibold"
       >
         {item.title}
-      </NavigationMenuLink>
+      </a>
     </NavigationMenuItem>
   );
 };
@@ -117,14 +117,14 @@ const SubMenuLink = ({ item }: { item: MenuItem }) => {
 
 export default function Navbar({
   logo = {
-    url: "",
-    src: "https://shadcnblocks.com/images/block/logos/shadcnblockscom-icon.svg",
+    url: "https://www.ub.ac.id/en/",
+    src: "https://wiki.ub.ac.id/lib/exe/fetch.php?cache=&media=ub-logo-small.png",
     alt: "logo",
-    title: "Shadcnblocks.com",
+    title: "Rate My Brawijaya Professors",
   },
 }: NavbarProps) {
   return (
-    <section className="py-4 flex">
+    <section className="py-4 flex bg-ub-primary">
       <div className="w-full justify-center px-10">
         {/* Desktop Menu */}
         <nav className="hidden justify-between lg:flex">
@@ -132,7 +132,7 @@ export default function Navbar({
             {/* Logo */}
             <a href={logo.url} className="flex items-center gap-2">
               <img src={logo.src} className="max-h-8" alt={logo.alt} />
-              <span className="text-lg font-semibold tracking-tighter">
+              <span className="text-lg font-semibold tracking-tighter text-white">
                 {logo.title}
               </span>
             </a>

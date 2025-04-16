@@ -65,8 +65,8 @@ export default function LoginForm({onSwitch}: RegisterFormProps) {
         />
       </div>
       <div className="grid grid-cols-4 items-center gap-4">
-        <Label htmlFor="newPassword" className="text-right">
-          New Password
+        <Label htmlFor="password" className="text-right">
+          Password
         </Label>
         <Input
           id="password"
@@ -77,7 +77,7 @@ export default function LoginForm({onSwitch}: RegisterFormProps) {
           {...register("password", {required: true})}
           />
       </div>
-      <Button className="rounded-lg" disabled={isLoading}>
+      <Button className="rounded-lg bg-ub-secondary hover:bg-white border border-ub-secondary hover:text-ub-secondary" disabled={isLoading}>
         { isLoading && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
         { isLoading ? "Loading..." : "Continue" }
       </Button>
@@ -90,7 +90,7 @@ export default function LoginForm({onSwitch}: RegisterFormProps) {
 
       <div className="text-sm text-center">
         Don't have an account?{" "}
-        <Button variant="link" onClick={onSwitch}>
+        <Button variant="link" onClick={onSwitch} className="text-ub-secondary">
           Sign Up
         </Button>
       </div>

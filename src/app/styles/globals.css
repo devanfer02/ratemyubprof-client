@@ -4,6 +4,11 @@
 @custom-variant dark (&:is(.dark *));
 
 @theme inline {
+  /* CUSTOM THEME*/
+  --color-ub-primary: #00406c;
+  --color-ub-secondary: #e8910e;
+
+
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --font-sans: var(--font-geist-sans);

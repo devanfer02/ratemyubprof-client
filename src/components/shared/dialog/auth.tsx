@@ -34,11 +34,11 @@ export default function AuthDialog(
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogTrigger asChild>
-        <Button variant="outline" onClick={onClick}>{title}</Button>
+        <Button variant="outline" onClick={onClick} className="text-ub-primary hover:bg-ub-primary border border-white hover:text-white">{title}</Button>
       </DialogTrigger>
       <DialogContent className="sm:max-w-[525px]">
         <DialogHeader>
-          <DialogTitle className="text-3xl font-bold text-center">{title}</DialogTitle>
+          <DialogTitle className="text-3xl font-bold text-center text-ub-primary">{title}</DialogTitle>
         </DialogHeader>
         {children}
         <DialogDescription className="text-center">

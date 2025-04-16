@@ -87,7 +87,7 @@ export default function RegisterForm({onSwitch}: RegisterFormProps) {
           />
       </div>
       { errors.newPassword && <span className="text-red-500 text-sm">{errors.newPassword.message}</span> }
-      <Button className="rounded-lg" disabled={isLoading}>
+      <Button className="rounded-lg bg-ub-secondary hover:bg-white border border-ub-secondary hover:text-ub-secondary" disabled={isLoading}>
         { isLoading && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
         { isLoading ? "Loading..." : "Continue" }
       </Button>
@@ -100,7 +100,7 @@ export default function RegisterForm({onSwitch}: RegisterFormProps) {
 
       <div className="text-sm text-center">
         Already have an account?{" "}
-        <Button variant="link" onClick={onSwitch}>
+        <Button variant="link" onClick={onSwitch} className="text-ub-secondary">
           Sign In 
         </Button>
       </div>
