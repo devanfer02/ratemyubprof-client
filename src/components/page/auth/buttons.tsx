@@ -27,8 +27,6 @@ export default function AuthButtons() {
 
   const logout = async () => {
     await signOut({ redirect: true })
-
-    window.location.href = "/"
   }
 
   useEffect(() => {
