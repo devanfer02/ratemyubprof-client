@@ -117,7 +117,7 @@ const SubMenuLink = ({ item }: { item: MenuItem }) => {
 
 export default function Navbar({
   logo = {
-    url: "https://www.ub.ac.id/en/",
+    url: "/",
     src: "https://wiki.ub.ac.id/lib/exe/fetch.php?cache=&media=ub-logo-small.png",
     alt: "logo",
     title: "Rate My Brawijaya Professors",
