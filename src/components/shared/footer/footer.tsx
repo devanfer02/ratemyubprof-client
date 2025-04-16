@@ -4,7 +4,7 @@ export default function Footer() {
       <p className="text-sm">
         © {new Date().getFullYear()} RateMyUbProf. All rights reserved.
       </p>
-      <p>Created by <span className="font-bold">Anak UB</span> yang tercinta</p>
+      <p>Created with ❤️ by <span className="font-bold">Anak UB</span> yang tercinta</p>
     </footer>
 
   )

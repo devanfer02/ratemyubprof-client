@@ -145,7 +145,7 @@ export default function Navbar({
             </div>
           </div>
           <div className="flex gap-2">
-            <AuthButtons/>
+            <AuthButtons />
           </div>
         </nav>
 
@@ -167,6 +167,9 @@ export default function Navbar({
                   <SheetTitle>
                     <a href={logo.url} className="flex items-center gap-2">
                       <img src={logo.src} className="max-h-8" alt={logo.alt} />
+                      <span className="text-lg font-semibold tracking-tighter text-ub-primary">
+                        Rate Brawijaya Prof
+                      </span>
                     </a>
                   </SheetTitle>
                 </SheetHeader>
@@ -180,7 +183,7 @@ export default function Navbar({
                   </Accordion>
 
                   <div className="flex flex-col gap-3">
-                    <AuthButtons/>
+                    <AuthButtons />
                   </div>
                 </div>
               </SheetContent>

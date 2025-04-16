@@ -1,25 +1,20 @@
 import { Card } from "@/components/ui/card";
 import { Progress } from "@/components/ui/progress";
-import Image from "next/image";
+import ProfessorImage from "./image";
 
 type ProfessorCardProps = {
   prof: Professor;
 };
 
 export default function ProfessorCard({ prof }: ProfessorCardProps) {
+
   return (
-    <Card className="flex flex-row rounded-lg shadow-lg p-4 bg-white border border-gray-200 hover:shadow-xl transition-shadow duration-300">
-      <div className="flex-shrink-0">
-        <Image
-          src={prof.profileImgLink || "https://www.gravatar.com/avatar/?d=mp"}
-          width={100}
-          height={100}
-          alt={prof.name}
-          className="object-cover"
-        />
+    <Card className="flex flex-col lg:flex-row rounded-lg shadow-lg p-4 bg-white border border-gray-200 hover:shadow-xl transition-shadow duration-300">
+      <div className="flex self-center items-center justify-center">
+        <ProfessorImage prof={prof} />
       </div>
-      <div className="overflow-x-auto">
-        <table className="table-auto text-sm text-left text-gray-700 w-full border-collapse">
+      <div className="overflow-x-auto w-full">
+        <table className="table-auto text-sm text-left text-ub-primary w-full border-collapse">
           <tbody>
             <tr>
               <td className="px-4 py-2 font-semibold">Name</td>
@@ -33,28 +28,25 @@ export default function ProfessorCard({ prof }: ProfessorCardProps) {
               <td className="px-4 py-2 font-semibold">Jurusan</td>
               <td className="px-4 py-2">{prof.major}</td>
             </tr>
-            <tr>
-              <td className="px-4 py-2 font-semibold">Total Reviews</td>
-              <td className="px-4 py-2">{prof.reviewsCount}</td>
-            </tr>
-            <tr>
-              <td className="px-4 py-2 font-semibold">Difficulty Rate</td>
-              <td className="px-4 py-2">{prof.avgDiffRate} / 5</td>
-
-            </tr>
-            <tr>
-              <td className="px-4 py-2 font-semibold">Friendly Rate</td>
-              <td className="px-4 py-2">{prof.avgFriendlyRate} / 5</td>
-
-            </tr>
           </tbody>
         </table>
-
+        <div className="flex flex-row w-full">
+          <p className="px-4 py-2 text-ub-secondary text-sm block w-1/4">
+            <span className="font-bold text-xl">{prof.reviewsCount}</span> Reviews 
+          </p>
+          <p className="px-4 py-2 text-ub-secondary text-sm block w-1/3">
+            <span className="font-bold text-xl">{prof.avgDiffRate} / 5</span>  Difficulty  
+          </p>
+          <p className="px-4 py-2 text-ub-secondary text-sm block w-1/3">
+            <span className="font-bold text-xl">{prof.avgFriendlyRate} / 5</span>  Friendly 
+          </p>
+        </div>
         <div className="pl-4">
           <Progress value={prof.avgDiffRate / 5 * 100} className="[&>*]:bg-ub-primary my-2" />
-          <Progress value={prof.avgFriendlyRate / 5 * 100} className="[&>*]:bg-ub-secondary my-2"/>
+          <Progress value={prof.avgFriendlyRate / 5 * 100} className="[&>*]:bg-ub-secondary my-2" />
         </div>
       </div>
+
 
     </Card>
   );

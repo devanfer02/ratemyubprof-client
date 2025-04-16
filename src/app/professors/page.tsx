@@ -2,6 +2,7 @@ import ProfessorCard from "@/components/page/professors/card";
 import SearchProfessor from "@/components/page/professors/search";
 import { PaginationUI } from "@/components/shared/pagination/pagination";
 import { fetchProfessors } from "@/services/professor"
+import Image from "next/image";
 
 export default async function Test({ searchParams }: { searchParams: { [key: string]: string } }) {
   searchParams = await searchParams
@@ -23,7 +24,8 @@ export default async function Test({ searchParams }: { searchParams: { [key: str
         </div>
         <div className="h-screen flex justify-center">
           <div className="flex flex-col items-center justify-center">
-            <h1 className="text-2xl font-bold text-gray-800">An error occured</h1>
+            <Image src="/assets/panic.jpg" width={500} height={500} alt="panic"/>
+            <h1 className="text-2xl font-bold text-ub-secondary">An error occured!</h1>
           </div>
         </div>
       </div>
@@ -51,7 +53,7 @@ export default async function Test({ searchParams }: { searchParams: { [key: str
       <div>
         <SearchProfessor params={params} />
       </div>
-      <div className="grid lg:grid-cols-2 gap-5 mx-8 my-10">
+      <div className="grid lg:grid-cols-2 gap-5 mx-8 mb-10">
         {profs?.map(prof => (
           <ProfessorCard prof={prof} key={prof.name} />
         ))}

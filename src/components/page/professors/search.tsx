@@ -65,10 +65,10 @@ export default function SearchProfessor({params}: SearchProfessorProps) {
             </div>
 
             {/* Accordion content for faculty and major */}
-            <AccordionContent>
-              <div className="flex flex-col gap-4 pt-4">
+            <AccordionContent className="">
+              <div className="flex flex-row gap-4 pt-4">
                 {/* Faculty Input */}
-                <div>
+                <div className="w-1/2">
                   <label htmlFor="faculty" className="block text-sm font-medium text-gray-700 mb-1">
                     Faculty
                   </label>
@@ -81,7 +81,7 @@ export default function SearchProfessor({params}: SearchProfessorProps) {
                 </div>
 
                 {/* Major Input */}
-                <div>
+                <div className="w-1/2">
                   <label htmlFor="major" className="block text-sm font-medium text-gray-700 mb-1">
                     Major
                   </label>
