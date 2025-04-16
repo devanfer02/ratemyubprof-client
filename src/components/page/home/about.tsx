@@ -23,8 +23,8 @@ const icons: AboutIcons[] = [
 export default function About() {
   return (
     <div className="mb-10">
-      <div className="text-center mb-5">
-        <h1 className="font-extrabold text-4xl">Join Our Community!</h1>
+      <div className="text-center mb-10">
+        <h1 className="font-extrabold text-4xl mb-2">Join Our Community!</h1>
         <div className="flex justify-center">
           <p className="max-w-xl">
             Rate My Brawijaya Professors is a platform for students to share their
@@ -33,14 +33,14 @@ export default function About() {
           </p>
         </div>
       </div>
-      <div className="flex mx-auto justify-center gap-x-10">
+      <div className="flex mx-auto justify-center gap-x-30">
         { icons.map((icon) => (
           <div className="flex flex-col justify-between h-full min-h-[400px]" key={icon.src}>
             <Image 
               src={icon.src}
               alt="idk"
-              width={400}
-              height={400}
+              width={300}
+              height={300}
             />
             <p className="text-center text-xl font-bold">{icon.text}</p>
           </div>

@@ -16,6 +16,19 @@ const nextConfig: NextConfig = {
         port: '',
         pathname: '/**',
       },
+      {
+        protocol: 'https',
+        hostname: 'apps.ub.ac.id',
+        port: '',
+        pathname: '/**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'www.gravatar.com',
+        port: '',
+        pathname: '/**',
+      },
+
     ]
   }
 };

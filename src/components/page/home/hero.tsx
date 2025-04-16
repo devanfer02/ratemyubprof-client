@@ -1,5 +1,6 @@
 import { Input } from "@/components/ui/input";
 import Image from "next/image";
+import SearchInput from "./search";
 
 export default function Hero() {
   return (
@@ -17,15 +18,7 @@ export default function Hero() {
 
       <div className="relative z-20 text-center max-w-2xl px-4">
         <h1 className="text-4xl font-semibold mb-6">Enter your professor's name to get started</h1>
-
-        <div className="flex items-center bg-white rounded-xl px-4 py-2 shadow-md">
-          <span className="text-gray-500 mr-2">🏫</span>
-          <Input
-            type="text"
-            placeholder="Search for a professor..."
-            className="flex-1 outline-none text-black bg-transparent border-0"
-          />
-        </div>
+        <SearchInput/>
       </div>
     </div>
   );
