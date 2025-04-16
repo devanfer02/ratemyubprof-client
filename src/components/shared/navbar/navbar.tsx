@@ -1,5 +1,4 @@
 import navs from '@/constants/navs.json'
-import auth from '@/constants/auth-navs.json'
 
 import { Menu } from "lucide-react";
 
@@ -25,6 +24,7 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet";
+import AuthButtons from '@/components/page/auth/buttons';
 
 interface MenuItem {
   title: string;
@@ -113,9 +113,11 @@ const SubMenuLink = ({ item }: { item: MenuItem }) => {
   );
 };
 
+
+
 export default function Navbar({
   logo = {
-    url: "https://www.shadcnblocks.com",
+    url: "",
     src: "https://shadcnblocks.com/images/block/logos/shadcnblockscom-icon.svg",
     alt: "logo",
     title: "Shadcnblocks.com",
@@ -143,12 +145,7 @@ export default function Navbar({
             </div>
           </div>
           <div className="flex gap-2">
-            <Button asChild variant="outline" size="sm">
-              <a href={auth.login.url}>{auth.login.title}</a>
-            </Button>
-            <Button asChild size="sm">
-              <a href={auth.register.url}>{auth.register.title}</a>
-            </Button>
+            <AuthButtons/>
           </div>
         </nav>
 
@@ -183,12 +180,7 @@ export default function Navbar({
                   </Accordion>
 
                   <div className="flex flex-col gap-3">
-                    <Button asChild variant="outline">
-                      <a href={auth.login.url}>{auth.login.title}</a>
-                    </Button>
-                    <Button asChild>
-                      <a href={auth.register.url}>{auth.register.title}</a>
-                    </Button>
+                    <AuthButtons/>
                   </div>
                 </div>
               </SheetContent>
