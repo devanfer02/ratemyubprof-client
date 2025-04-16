@@ -4,3 +4,8 @@ export type RegisterFormData = {
   username: string;
   newPassword: string;
 }
+
+export type LoginFormData = {
+  username: string;
+  password: string;
+}

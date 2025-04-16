@@ -43,6 +43,7 @@ export default function RegisterForm({onSwitch}: RegisterFormProps) {
           id="nim"
           placeholder="Your Brawijaya NIM"
           className="col-span-3"
+          required
           {...register("nim", {required: true})}
         />
       </div>
@@ -55,6 +56,7 @@ export default function RegisterForm({onSwitch}: RegisterFormProps) {
           placeholder="Your Brawijaya Password"
           className="col-span-3"
           type="password"
+          required
           {...register("password", {required: true})}
         />
       </div>
@@ -66,6 +68,7 @@ export default function RegisterForm({onSwitch}: RegisterFormProps) {
           id="username"
           placeholder="New Account Username"
           className="col-span-3"
+          required
           {...register("username", {required: true})}
         />
       </div>
@@ -78,6 +81,7 @@ export default function RegisterForm({onSwitch}: RegisterFormProps) {
           placeholder="New Account Password"
           className="col-span-3"
           type="password"
+          required
           {...register("newPassword", {required: true, minLength: { value: 6, message: "New password must be minimum 6 characters" }})}
           />
       </div>
