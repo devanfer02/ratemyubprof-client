@@ -5,21 +5,30 @@ import RegisterForm from "./register-form";
 import LoginForm from "./login-form";
 import { useEffect, useState } from "react";
 import { useSearchParams, useRouter } from "next/navigation";
+import { signOut, useSession } from "next-auth/react";
+import { Button } from "@/components/ui/button";
+import { Skeleton } from "@/components/ui/skeleton";
 
 export default function AuthButtons() {
   const searchParams = useSearchParams()
   const router = useRouter()
+  const { status } = useSession();
 
   const [openDialog, setOpenDialog] = useState<"signin" | "signup" | null>(null);
 
 
   const clearParams = () => {
-    console.log("CLEAR")
     const params = new URLSearchParams(window.location.search)
     params.delete("authDialog")
     const query = params.toString()
     const newUrl = query ? `?${query}` : "/"
     router.push(newUrl)
+  }
+
+  const logout = async () => {
+    await signOut({ redirect: true })
+
+    window.location.href = "/"
   }
 
   useEffect(() => {
@@ -29,11 +38,20 @@ export default function AuthButtons() {
     }
 
     if (!openDialog) {
-      console.log("CLEARNING")
       clearParams()
     }
 
   }, [searchParams])
+
+  if (status === "loading") {
+    return (
+      <Skeleton className="h-9 w-22 rounded-md bg-zinc-300" />
+    )
+  }
+
+  if (status === "authenticated") {
+    return <Button onClick={() => logout()}>Sign out</Button>
+  }
 
   return (
     <>

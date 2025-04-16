@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { LoginFormData } from "@/types/auth";
+import { Loader2 } from "lucide-react";
 import { signIn } from "next-auth/react";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
@@ -20,20 +21,30 @@ export default function LoginForm({onSwitch}: RegisterFormProps) {
     formState: { errors },
   } = useForm<LoginFormData>()
   const [err, setError] = useState<Error | null>(null)
+  const [isLoading, setLoading] = useState(false)
 
   const loginHandler = async (data: LoginFormData) => {
     try {
+      setError(null)
+      setLoading(true)
+
       const res = await signIn("credentials", {
         username: data.username,
         password: data.password,
         redirect: false,
       })
+
+      setLoading(false)
   
-      if (res?.ok) {
+      if (res?.status === 200) {
         window.location.href = "/";
         return
       }
+
+      setError(new Error("Invalid username or password"))
+
     } catch (err) {
+
       setError(err as Error)
       
     }
@@ -66,7 +77,10 @@ export default function LoginForm({onSwitch}: RegisterFormProps) {
           {...register("password", {required: true})}
           />
       </div>
-      <Button className="rounded-lg">Continue</Button>
+      <Button className="rounded-lg" disabled={isLoading}>
+        { isLoading && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
+        { isLoading ? "Loading..." : "Continue" }
+      </Button>
 
       {err && (
         <div className="text-red-500 text-sm text-center">

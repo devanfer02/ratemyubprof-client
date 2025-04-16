@@ -1,4 +1,5 @@
 import { API_KEY, BASE_URL } from "@/services/api";
+import { jwtDecode } from "jwt-decode";
 import { NextAuthOptions } from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
 
@@ -21,7 +22,7 @@ export const authOptions: NextAuthOptions = {
           const res = await fetch(`${BASE_URL}/auth/login`, {
             method: "POST",
             headers: {
-              "x-api-key": `Key ${API_KEY}`,
+              "RMUBP-API-KEY": `${API_KEY}`,
               "Content-Type": "application/json",
               Accept: "application/json",
             },
@@ -33,9 +34,20 @@ export const authOptions: NextAuthOptions = {
 
           const data = await res.json()
 
-          return data 
+          if (!res.ok) {
+            return null 
+          }
+
+          const decoded = jwtDecode(data.data.accessToken as string)
+
+          return {
+            id: decoded.jti!,
+            accessToken: data.accessToken,
+            refreshToken: data.refreshToken,
+          }
         } catch (err) {
-          throw new Error("An error occurred during authentication.");
+          console.error("Error logging in:", err)
+          throw new Error("An error occurred while logging in.");
         }
       },
     }),
@@ -49,16 +61,24 @@ export const authOptions: NextAuthOptions = {
   },
   callbacks: {
     async session({ session, token }) {
-      if (token) {
-        session.user = token;
-      }
-
-      return session;
+      session.user = {
+        ...session.user,
+        accessToken: token.accessToken,
+        refreshToken: token.refreshToken,
+        id: token.id,
+        
+      };
+  
+      return session; 
     },
     async jwt({ token, user }) {
-      if (user) token.id = user.id;
-
-      return { ...token, ...user };
+      if (user) {
+        token.id = user.id;
+        token.accessToken = user.accessToken;
+        token.refreshToken = user.refreshToken;
+      }
+  
+      return token;
     },
     
   },

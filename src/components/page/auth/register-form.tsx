@@ -7,28 +7,29 @@ import { registerUser } from "@/services/auth";
 import { RegisterFormData } from "@/types/auth";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
+import { Loader2 } from "lucide-react";
 
 type RegisterFormProps = {
   onSwitch?: () => void 
 }
 
 export default function RegisterForm({onSwitch}: RegisterFormProps) {
-  
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm<RegisterFormData>()
   const [err, setError] = useState<Error | null>(null)
+  const [isLoading, setLoading] = useState(false)
 
   const registerHandler = async (data: RegisterFormData) => {
-
+    setLoading(true)
     const err = await registerUser(data)
-    
+    setLoading(false)
     if (err != null) {
       setError(err)
       return 
-    }
+    } 
 
     window.location.href = "?authDialog=signin";
   }
@@ -86,7 +87,10 @@ export default function RegisterForm({onSwitch}: RegisterFormProps) {
           />
       </div>
       { errors.newPassword && <span className="text-red-500 text-sm">{errors.newPassword.message}</span> }
-      <Button className="rounded-lg">Continue</Button>
+      <Button className="rounded-lg" disabled={isLoading}>
+        { isLoading && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
+        { isLoading ? "Loading..." : "Continue" }
+      </Button>
 
       {err && (
         <div className="text-red-500 text-sm text-center">

@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import Navbar from "@/components/shared/navbar/navbar";
+import NextAuthProvider from "@/components/provider/next-auth";
 
 export const metadata: Metadata = {
   title: "RateMyUbProf",
@@ -13,13 +14,17 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
+
     <html lang="en">
       <body
         className="antialiased"
       >
-        <Navbar/>
-        {children}
+        <NextAuthProvider>
+          <Navbar />
+          {children}
+        </NextAuthProvider>
       </body>
     </html>
+
   );
 }
