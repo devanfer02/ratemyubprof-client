@@ -11,6 +11,9 @@ type Professor = {
   faculty: string
   major: string
   profileImgLink: string
+  reviewsCount: number 
+  avgDiffRate: number
+  avgFriendlyRate: number
   createdAt: string
   updatedAt: string
 }
