@@ -6,7 +6,7 @@ RateMyUBProf is a web application designed to help students rate and review prof
 
 This is a [Next.js v15](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
-For backend repository, you can it right in [this github repository](https://github.com/devanfer02/ratemyubprof-client)
+For backend repository, you can it right in [this github repository](https://github.com/devanfer02/ratemyubprof)
 
 ## Getting Started
 
