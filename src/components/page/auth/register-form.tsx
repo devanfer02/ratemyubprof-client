@@ -26,7 +26,7 @@ export default function RegisterForm({onSwitch}: RegisterFormProps) {
     setLoading(true)
     const err = await registerUser(data)
     setLoading(false)
-    if (err != null) {
+    if (err !== null) {
       setError(err)
       return 
     } 

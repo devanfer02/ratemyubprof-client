@@ -46,7 +46,6 @@ export const authOptions: NextAuthOptions = {
             refreshToken: data.refreshToken,
           }
         } catch (err) {
-          console.error("Error logging in:", err)
           throw new Error("An error occurred while logging in.");
         }
       },

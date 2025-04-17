@@ -41,10 +41,9 @@ export default function LoginForm({onSwitch}: RegisterFormProps) {
         return
       }
 
-      setError(new Error("Invalid username or password"))
+      setError(new Error(res?.error || "An error occurred while logging in"))
 
     } catch (err) {
-
       setError(err as Error)
       
     }

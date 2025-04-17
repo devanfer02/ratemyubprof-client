@@ -24,7 +24,7 @@ export async function registerUser(formData: RegisterFormData): Promise<Error | 
 
     return null 
   } catch(err) {
-    console.error("Error registering user:", err);
-    return null 
+    console.log(err)
+    return new Error("An error occurred while registering user")
   }
 }
