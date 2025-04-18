@@ -2,7 +2,7 @@
 
 import { Card } from "@/components/ui/card";
 import { Progress } from "@/components/ui/progress";
-import ProfessorImage from "./image";
+import ProfessorImage from "../../page/professors/image";
 
 type ProfessorCardProps = {
   prof: Professor;

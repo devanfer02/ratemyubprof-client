@@ -1,4 +1,4 @@
-import ProfessorCard from "@/components/page/professors/card";
+import ProfessorCard from "@/components/shared/card/professor-card";
 import SearchProfessor from "@/components/page/professors/search";
 import { PaginationUI } from "@/components/shared/pagination/pagination";
 import { fetchProfessors } from "@/services/professor"

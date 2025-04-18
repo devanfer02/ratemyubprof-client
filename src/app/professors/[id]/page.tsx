@@ -1,6 +1,9 @@
-import DistributionCard from "@/components/page/professors/distribution-card"
+import ReviewSection from "@/components/page/professors/review-section"
+import DistributionCard from "@/components/shared/card/distribution-card"
+import ReviewCard from "@/components/shared/card/review-card"
 import { Card } from "@/components/ui/card"
 import { fetchProfessorById } from "@/services/professor"
+import { fetchReviewByProfessorId } from "@/services/review"
 import Image from "next/image"
 
 type ProfessorReviewPageProps = {
@@ -11,11 +14,10 @@ type ProfessorReviewPageProps = {
 
 export default async function ProfessorReviewPage({ params }: ProfessorReviewPageProps) {
   const { id } = await params
-  const [professor, meta, error] = await fetchProfessorById(id)
-
-
-  if (error) {
-    console.log(error)
+  
+  const [professor, profMeta, profErr] = await fetchProfessorById(id);
+  
+  if (profErr) {
     return (
       <div className="h-screen flex justify-center">
         <div className="flex flex-col items-center justify-center">
@@ -66,8 +68,11 @@ export default async function ProfessorReviewPage({ params }: ProfessorReviewPag
         </div>
       </Card>
       <div className="grid lg:grid-cols-2 gap-4">
-        <DistributionCard meta={meta!.difficultyDistribution} name="Difficulty Rating Distribution" />
-        <DistributionCard meta={meta!.friendlyDistribution} name="Friendly Rating Distribution" />
+        <DistributionCard meta={profMeta!.difficultyDistribution} name="Difficulty Rating Distribution" />
+        <DistributionCard meta={profMeta!.friendlyDistribution} name="Friendly Rating Distribution" />
+      </div>
+      <div>
+        <ReviewSection professorId={professor.id} />
       </div>
     </div>
   );
