@@ -3,6 +3,7 @@ import "./styles/globals.css";
 import Navbar from "@/components/shared/navbar/navbar";
 import NextAuthProvider from "@/components/provider/next-auth";
 import Footer from "@/components/shared/footer/footer";
+import { Toaster } from "@/components/ui/sonner";
 
 export const metadata: Metadata = {
   title: "RateMyUbProf",
@@ -26,6 +27,7 @@ export default function RootLayout({
         <NextAuthProvider>
           <Navbar />
           {children}
+          <Toaster />
         </NextAuthProvider>
         <Footer/>
       </body>

@@ -1,6 +1,6 @@
 import { API_KEY, BASE_URL } from "@/services/api";
 import { jwtDecode } from "jwt-decode";
-import { NextAuthOptions } from "next-auth";
+import { NextAuthOptions, User } from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
 
 export const authOptions: NextAuthOptions = {
@@ -42,13 +42,13 @@ export const authOptions: NextAuthOptions = {
 
           return {
             id: decoded.jti!,
-            accessToken: data.accessToken,
-            refreshToken: data.refreshToken,
-          }
+            accessToken: data.data.accessToken,
+            refreshToken: data.data.refreshToken,
+          } as User
         } catch (err) {
           throw new Error("An error occurred while logging in.");
         }
-      },
+      }, 
     }),
   ],
   pages: {

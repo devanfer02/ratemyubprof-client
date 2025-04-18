@@ -6,6 +6,7 @@ import { Label } from "@/components/ui/label";
 import { LoginFormData } from "@/types/auth";
 import { Loader2 } from "lucide-react";
 import { signIn } from "next-auth/react";
+import { usePathname } from "next/navigation";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 
@@ -14,7 +15,7 @@ type RegisterFormProps = {
 }
 
 export default function LoginForm({onSwitch}: RegisterFormProps) {
-  
+  const currentPath = usePathname()
   const {
     register,
     handleSubmit,
@@ -31,10 +32,15 @@ export default function LoginForm({onSwitch}: RegisterFormProps) {
       const res = await signIn("credentials", {
         username: data.username,
         password: data.password,
-        redirect: true,
+        redirect: false,
       })
 
       setLoading(false) 
+
+      if (res?.ok) {
+        window.location.href = currentPath || "/"
+        return 
+      }
 
       if (res?.status === 401) {
         setError(new Error("Invalid username or password"))
