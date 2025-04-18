@@ -7,6 +7,7 @@ type Review = {
   friendlyRating: number;
   createdAt: string;
   like: number;
+  isLiked: number;
   dislike: number;
   user: User
   professor: Professor

@@ -6,18 +6,22 @@ import { getServerSession } from "next-auth"
 
 export async function fetchReviewByProfessorId(id: string, page: string): Promise<[Review[] | null, PaginationMeta | null, Error | null]> {
   try {
+    const session = await getServerSession(authOptions)
+    const userToken = session?.user.accessToken || "";
+
     const res = await fetch(`${BASE_URL}/professors/${id}/reviews?page=${page}`, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
         "RMUBP-API-KEY": API_KEY,
+        "Authorization": `Bearer ${userToken}`,
       },
     })
 
     const data = await res.json()
 
     if (!res.ok) {
-      return [null, null, Error((data.message) || "Failed to fetch professor by id")]
+      return [null, null, Error((data.message) || "Failed to fetch reviews")]
     }
 
     return [data.data as Review[], data.meta as PaginationMeta, null]
@@ -31,6 +35,10 @@ export async function createReaction(id: string, reactionType: string): Promise<
   try {
     const session = await getServerSession(authOptions)
     const userToken = session?.user.accessToken;
+
+    if (!userToken) {
+      return new Error("User token not found")
+    }
 
     const res = await fetch(`${BASE_URL}/reviews/${id}/reactions`, {
       method: "POST",
@@ -54,4 +62,34 @@ export async function createReaction(id: string, reactionType: string): Promise<
   } catch (err) {
     return new Error("An error occurred while creating reaction")
   }
+}
+
+export async function deleteReaction(id: string): Promise<Error | null> {
+  try {
+    const session = await getServerSession(authOptions)
+    const userToken = session?.user.accessToken;
+
+    if (!userToken) {
+      return new Error("User token not found")
+    }
+
+    const res = await fetch(`${BASE_URL}/reviews/${id}/reactions`, {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+        "RMUBP-API-KEY": API_KEY,
+        "Authorization": `Bearer ${userToken}`,
+      },
+    })
+
+    const data = await res.json()
+
+    if (!res.ok) {
+      return Error((data.message) || "Failed to delete reaction")
+    }
+
+    return null 
+  } catch (err) {
+    return new Error("An error occurred while deleting reaction")
+  } 
 }
