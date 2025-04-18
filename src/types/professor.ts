@@ -25,3 +25,16 @@ type PaginationMeta = {
   next: number 
   prev: number
 }
+
+type DifficultyDistribution = {
+  ratingCounter1: number;
+  ratingCounter2: number;
+  ratingCounter3: number;
+  ratingCounter4: number;
+  ratingCounter5: number;
+}
+
+type RatingDistributionMeta = {
+  difficultyDistribution: DifficultyDistribution;
+  friendlyDistribution: DifficultyDistribution;
+};

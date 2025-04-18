@@ -48,7 +48,7 @@ export default function AuthButtons() {
   }
 
   if (status === "authenticated") {
-    return <Button onClick={() => logout()}>Sign out</Button>
+    return <Button className="bg-ub-secondary text-white hover:bg-white hover:text-ub-secondary" onClick={() => logout()}>Sign out</Button>
   }
 
   return (

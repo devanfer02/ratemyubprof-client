@@ -31,17 +31,20 @@ export default function LoginForm({onSwitch}: RegisterFormProps) {
       const res = await signIn("credentials", {
         username: data.username,
         password: data.password,
-        redirect: false,
+        redirect: true,
       })
 
-      setLoading(false)
-  
-      if (res?.status === 200) {
-        window.location.href = "/";
+      setLoading(false) 
+
+      if (res?.status === 401) {
+        setError(new Error("Invalid username or password"))
         return
       }
 
-      setError(new Error(res?.error || "An error occurred while logging in"))
+      if (res?.status === 500) {
+        setError(new Error(res?.error || "An error occurred while logging in"))
+      }
+
 
     } catch (err) {
       setError(err as Error)
