@@ -8,12 +8,20 @@ import {
 
 export default function withAuth(
   middleware: NextMiddleware,
-  requireAuth: string[] = []
+  requireAuth: (string | RegExp)[] = []
 ) {
   return async (req: NextRequest, next: NextFetchEvent) => {
     const pathName = req.nextUrl.pathname;
 
-    if (requireAuth.some((path) => pathName.startsWith(path))) {
+    const isProtected = requireAuth.some((path) => {
+      if (typeof path === "string") {
+        return pathName.startsWith(path);
+      } else {
+        return path.test(pathName);
+      }
+    });
+
+    if (isProtected) {
       const token = await getToken({
         req,
         secret: process.env.NEXTAUTH_SECRET || "secret",

@@ -1,6 +1,7 @@
 import ReviewSection from "@/components/page/professors/review-section"
 import DistributionCard from "@/components/shared/card/distribution-card"
 import ReviewCard from "@/components/shared/card/review-card"
+import { Button } from "@/components/ui/button"
 import { Card } from "@/components/ui/card"
 import { fetchProfessorById } from "@/services/professor"
 import { fetchReviewByProfessorId } from "@/services/review"
@@ -64,6 +65,9 @@ export default async function ProfessorReviewPage({ params }: ProfessorReviewPag
                 <p className="text-xl lg:text-4xl font-bold">{professor.avgFriendlyRate.toFixed(1)} / 5</p>
               </div>
             </div>
+            <Button className="mt-5 bg-ub-secondary text-white border border-ub-secondary hover:bg-white hover:text-ub-secondary"> 
+              <a href={`/professors/${professor.id}/review`}>Rate this professor!</a>
+            </Button>
           </div>
         </div>
       </Card>
