@@ -2,7 +2,6 @@ import { NextRequest, NextResponse } from "next/server";
 import withAuth from "./middleware/with-auth";
 
 export function mainMiddleware(request: NextRequest) {
-  console.log(request.nextUrl.pathname)
 
   if (request.nextUrl.pathname.endsWith("/reviews")) {
     const redirect = "/professors/" + request.nextUrl.pathname.split("/")[2] + "#review-section";

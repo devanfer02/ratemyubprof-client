@@ -15,7 +15,7 @@ type ReviewCardProps = {
 export default function ReviewCard({ review, status }: ReviewCardProps) {
   const [like, setLike] = useState(review.like);
   const [dislike, setDislike] = useState(review.dislike);
-  const [reacted, setReacted] = useState(review.isLiked);
+  const [reacted, setReacted] = useState(review.isLiked); 
 
   const copyToClipboard = () => {
     const redirect = String(window.location.href)
