@@ -1,4 +1,4 @@
-import { API_KEY, BASE_URL } from "@/lib/env";
+import { env } from "@/lib/env";
 import { jwtDecode } from "jwt-decode";
 import { NextAuthOptions, User } from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
@@ -19,10 +19,10 @@ export const authOptions: NextAuthOptions = {
 
       async authorize(credentials) {
         try {
-          const res = await fetch(`${BASE_URL}/auth/login`, {
+          const res = await fetch(`${env.API_BASE_URL}/auth/login`, {
             method: "POST",
             headers: {
-              "RMUBP-API-KEY": `${API_KEY}`,
+              "RMUBP-API-KEY": `${env.API_KEY}`,
               "Content-Type": "application/json",
               Accept: "application/json",
             },
@@ -80,5 +80,5 @@ export const authOptions: NextAuthOptions = {
       return token;
     },
   },
-  secret: process.env.NEXTAUTH_SECRET,
+  secret: env.NEXTAUTH_SECRET,
 };

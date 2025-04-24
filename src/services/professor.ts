@@ -1,18 +1,18 @@
 "use server"
 
-import { API_KEY, BASE_URL } from "@/lib/env";
+import { env } from "@/lib/env";
 
 export async function fetchProfessors(params: FetchProfParam): Promise<[Professor[] | null, PaginationMeta | null, Error | null]> {
   try {
     const queryString = new URLSearchParams(params).toString();
 
-    const fullUrl = `${BASE_URL}/professors?${queryString}`;
+    const fullUrl = `${env.API_BASE_URL}/professors?${queryString}`;
 
     const res = await fetch(fullUrl, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
-        "RMUBP-API-KEY": API_KEY,
+        "RMUBP-API-KEY": env.API_KEY,
       },
     })
 
@@ -31,11 +31,11 @@ export async function fetchProfessors(params: FetchProfParam): Promise<[Professo
 
 export async function fetchProfessorById(id: string): Promise<[Professor | null, RatingDistributionMeta | null, Error | null]> {
   try {
-    const res = await fetch(`${BASE_URL}/professors/${id}`, {
+    const res = await fetch(`${env.API_BASE_URL}/professors/${id}`, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
-        "RMUBP-API-KEY": API_KEY,
+        "RMUBP-API-KEY": env.API_KEY,
       },
     })
 

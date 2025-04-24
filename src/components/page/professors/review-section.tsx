@@ -4,6 +4,7 @@ import { useEffect } from "react";
 import ReviewCard from "@/components/shared/card/review-card";
 import { Loader2 } from "lucide-react";
 import { useReviewStore } from "@/store/use-review";
+import { useSession } from "next-auth/react";
 
 type ReviewSectionProps = {
   professorId: string;
@@ -20,6 +21,8 @@ export default function ReviewSection({ professorId }: ReviewSectionProps) {
     setCurrent
   } = useReviewStore();
 
+  const { status } = useSession()
+
   useEffect(() => {
     fetchReviews(professorId, current);
   }, [current]);
@@ -30,7 +33,7 @@ export default function ReviewSection({ professorId }: ReviewSectionProps) {
   return (
     <div className="space-y-4">
       {reviews.map((review) => (
-        <ReviewCard key={review.id} review={review} />
+        <ReviewCard key={review.id} review={review} status={status}/>
       ))}
 
       <div className="flex justify-between items-center mt-4">

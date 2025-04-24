@@ -1,16 +1,16 @@
 "use server"
 
 import { RegisterFormData } from "@/types/auth";
-import { API_KEY, BASE_URL } from "@/lib/env";
+import { env } from "@/lib/env";
 import { toTitleCase } from "@/lib/string";
 
 export async function registerUser(formData: RegisterFormData): Promise<Error | null> {
   try {
-    const res = await fetch(BASE_URL + "/users/register", {
+    const res = await fetch(env.API_BASE_URL + "/users/register", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        "RMUBP-API-KEY": API_KEY,
+        "RMUBP-API-KEY": env.API_KEY,
       },
       body: JSON.stringify(formData),
     })

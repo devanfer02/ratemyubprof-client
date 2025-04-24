@@ -1,7 +1,7 @@
 "use server"
 
 import { authOptions } from "@/app/api/auth/[...nextauth]/options"
-import { API_KEY, BASE_URL } from "@/lib/env"
+import { env } from "@/lib/env"
 import { getServerSession } from "next-auth"
 
 export async function fetchReviewByProfessorId(id: string, page: string): Promise<[Review[] | null, PaginationMeta | null, Error | null]> {
@@ -9,11 +9,11 @@ export async function fetchReviewByProfessorId(id: string, page: string): Promis
     const session = await getServerSession(authOptions)
     const userToken = session?.user.accessToken || "";
 
-    const res = await fetch(`${BASE_URL}/professors/${id}/reviews?page=${page}`, {
+    const res = await fetch(`${env.API_BASE_URL}/professors/${id}/reviews?page=${page}`, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
-        "RMUBP-API-KEY": API_KEY,
+        "RMUBP-API-KEY": env.API_KEY,
         "Authorization": `Bearer ${userToken}`,
       },
     })
@@ -40,11 +40,11 @@ export async function createReaction(id: string, reactionType: string): Promise<
       return new Error("User token not found")
     }
 
-    const res = await fetch(`${BASE_URL}/reviews/${id}/reactions`, {
+    const res = await fetch(`${env.API_BASE_URL}/reviews/${id}/reactions`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        "RMUBP-API-KEY": API_KEY,
+        "RMUBP-API-KEY": env.API_KEY,
         "Authorization": `Bearer ${userToken}`,
       },
       body: JSON.stringify({
@@ -73,11 +73,11 @@ export async function deleteReaction(id: string): Promise<Error | null> {
       return new Error("User token not found")
     }
 
-    const res = await fetch(`${BASE_URL}/reviews/${id}/reactions`, {
+    const res = await fetch(`${env.API_BASE_URL}/reviews/${id}/reactions`, {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json",
-        "RMUBP-API-KEY": API_KEY,
+        "RMUBP-API-KEY": env.API_KEY,
         "Authorization": `Bearer ${userToken}`,
       },
     })

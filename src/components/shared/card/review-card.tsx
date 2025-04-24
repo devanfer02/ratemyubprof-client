@@ -2,16 +2,17 @@
 
 import { Button } from "@/components/ui/button";
 import { createReaction, deleteReaction } from "@/services/review";
-import { formatDate } from "@/utils/date";
+import { formatDate } from "@/lib/date";
 import { Share2 } from "lucide-react";
 import { useState } from "react";
 import { toast } from "sonner";
 
 type ReviewCardProps = {
   review: Review
+  status: "loading" | "authenticated" | "unauthenticated"
 }
 
-export default function ReviewCard({ review }: ReviewCardProps) {
+export default function ReviewCard({ review, status }: ReviewCardProps) {
   const [like, setLike] = useState(review.like);
   const [dislike, setDislike] = useState(review.dislike);
   const [reacted, setReacted] = useState(review.isLiked);
@@ -27,6 +28,10 @@ export default function ReviewCard({ review }: ReviewCardProps) {
   };
 
   const handleReaction = async (reactionType: string) => {
+    if (status === "unauthenticated") {
+      return 
+    }
+
     const isLike = reactionType === "like";
     const newReaction = isLike ? 1 : 2;
   

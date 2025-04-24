@@ -1,7 +1,17 @@
-import assert from "assert";
+import { z } from "zod";
 
-export const BASE_URL = process.env.API_BASE_URL!
-export const API_KEY = process.env.API_KEY!
+const envSchema = z.object({
+  API_BASE_URL: z.string().nonempty("API_BASE_URL is required"),
+  API_KEY: z.string().nonempty("API_KEY is required"),
+  NEXTAUTH_URL: z.string().nonempty("NEXTAUTH_URL is required"),
+  NEXTAUTH_SECRET: z.string().nonempty("NEXTAUTH_SECRET is required"),
+})
 
-assert.ok(BASE_URL && BASE_URL.trim() !== "", "NEXT_PUBLIC_API_BASE_URL is missing or empty");
-assert.ok(API_KEY && API_KEY.trim() !== "", "API_KEY is missing or empty");
+const _env = {
+  API_BASE_URL: process.env.API_BASE_URL,
+  API_KEY: process.env.API_KEY,
+  NEXTAUTH_URL: process.env.NEXTAUTH_URL,
+  NEXTAUTH_SECRET: process.env.NEXTAUTH_SECRET,
+};
+
+export const env = envSchema.parse(_env);
