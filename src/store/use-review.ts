@@ -7,7 +7,7 @@ interface ReviewState {
   current: number;
   loading: boolean;
   error: string | null;
-  fetchReviews: (professorId: string, page?: number) => Promise<void>;
+  fetchReviews: (professorId: string, page?: number, reviewId?: string) => Promise<void>;
   setCurrent: (page: number) => void;
 }
 
@@ -18,10 +18,10 @@ export const useReviewStore = create<ReviewState>((set) => ({
   loading: true,
   error: null,
 
-  fetchReviews: async (professorId, page = 1) => {
+  fetchReviews: async (professorId, page = 1, reviewId = "") => {
     set({ loading: true, error: null });
     try {
-      const [res, meta, error] = await fetchReviewByProfessorId(professorId, String(page));
+      const [res, meta, error] = await fetchReviewByProfessorId(professorId, String(page), reviewId);
       if (error) {
         set({ error: "Failed to fetch reviews." });
         return;

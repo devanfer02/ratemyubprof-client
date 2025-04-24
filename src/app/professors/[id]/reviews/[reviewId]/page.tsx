@@ -4,14 +4,15 @@ import DistributionCard from "@/components/shared/card/distribution-card"
 import { fetchProfessorById } from "@/services/professor"
 import Image from "next/image"
 
-type ProfessorReviewPageProps = {
+type ReviewSharedPageProps = {
   params: {
     id: string
+    reviewId: string
   }
 }
 
-export default async function ProfessorReviewPage({ params }: ProfessorReviewPageProps) {
-  const { id } = params
+export default async function ReviewSharedPage({ params }: ReviewSharedPageProps) {
+  const { id, reviewId } = params
   
   const [professor, profMeta, profErr] = await fetchProfessorById(id);
   
@@ -45,7 +46,7 @@ export default async function ProfessorReviewPage({ params }: ProfessorReviewPag
         <DistributionCard meta={profMeta!.friendlyDistribution} name="Friendly Rating Distribution" />
       </div>
       <div>
-        <ReviewSection professorId={professor.id} />
+        <ReviewSection professorId={professor.id} reviewId={reviewId}/>
       </div>
     </div>
   );

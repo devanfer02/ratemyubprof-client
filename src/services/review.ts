@@ -4,12 +4,12 @@ import { authOptions } from "@/app/api/auth/[...nextauth]/options"
 import { env } from "@/lib/env"
 import { getServerSession } from "next-auth"
 
-export async function fetchReviewByProfessorId(id: string, page: string): Promise<[Review[] | null, PaginationMeta | null, Error | null]> {
+export async function fetchReviewByProfessorId(id: string, page: string, reviewId: string = ""): Promise<[Review[] | null, PaginationMeta | null, Error | null]> {
   try {
     const session = await getServerSession(authOptions)
     const userToken = session?.user.accessToken || "";
 
-    const res = await fetch(`${env.API_BASE_URL}/professors/${id}/reviews?page=${page}`, {
+    const res = await fetch(`${env.API_BASE_URL}/professors/${id}/reviews?page=${page}&reviewId=${reviewId}`, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
