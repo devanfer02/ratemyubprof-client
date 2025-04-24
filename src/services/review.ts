@@ -1,7 +1,7 @@
 "use server"
 
 import { authOptions } from "@/app/api/auth/[...nextauth]/options"
-import { API_KEY, BASE_URL } from "./api"
+import { API_KEY, BASE_URL } from "@/lib/env"
 import { getServerSession } from "next-auth"
 
 export async function fetchReviewByProfessorId(id: string, page: string): Promise<[Review[] | null, PaginationMeta | null, Error | null]> {

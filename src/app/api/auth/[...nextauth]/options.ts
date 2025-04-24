@@ -1,4 +1,4 @@
-import { API_KEY, BASE_URL } from "@/services/api";
+import { API_KEY, BASE_URL } from "@/lib/env";
 import { jwtDecode } from "jwt-decode";
 import { NextAuthOptions, User } from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";

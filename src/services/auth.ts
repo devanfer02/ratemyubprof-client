@@ -1,8 +1,8 @@
 "use server"
 
 import { RegisterFormData } from "@/types/auth";
-import { API_KEY, BASE_URL } from "./api";
-import { toTitleCase } from "@/utils/string";
+import { API_KEY, BASE_URL } from "@/lib/env";
+import { toTitleCase } from "@/lib/string";
 
 export async function registerUser(formData: RegisterFormData): Promise<Error | null> {
   try {

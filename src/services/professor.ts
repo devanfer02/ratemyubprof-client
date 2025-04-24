@@ -1,6 +1,6 @@
 "use server"
 
-import { API_KEY, BASE_URL } from "./api";
+import { API_KEY, BASE_URL } from "@/lib/env";
 
 export async function fetchProfessors(params: FetchProfParam): Promise<[Professor[] | null, PaginationMeta | null, Error | null]> {
   try {
