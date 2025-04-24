@@ -11,7 +11,7 @@ type ProfessorReviewPageProps = {
 }
 
 export default async function ProfessorReviewPage({ params }: ProfessorReviewPageProps) {
-  const { id } = params
+  const { id } = await params
   
   const [professor, profMeta, profErr] = await fetchProfessorById(id);
   

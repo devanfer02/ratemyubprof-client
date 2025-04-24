@@ -18,7 +18,11 @@ export default function ReviewCard({ review, status }: ReviewCardProps) {
   const [reacted, setReacted] = useState(review.isLiked);
 
   const copyToClipboard = () => {
-    navigator.clipboard.writeText(window.location.href + "/reviews/" + review.id)
+    const redirect = String(window.location.href)
+      .replace("#review-section", "")
+      .replace(`/reviews/${review.id}`, "") + `/reviews/${review.id}`;
+
+    navigator.clipboard.writeText(redirect)
       .then(() => {
         toast("Link copied to clipboard! ✅ ")
       })

@@ -12,7 +12,11 @@ export default function ProfessorIDCard({professor}: ProfessorIDCardProps) {
       <div className="lg:flex items-center space-x-4">
         <Image src={professor.profileImgLink} alt={professor.name} className="w-50" width={100} height={100} />
         <div className="lg:w-2/3 lg:ml-5 mt-5 lg:mt-0">
-          <h1 className="text-xl lg:text-3xl font-bold">{professor.name}</h1>
+          <h1 className="text-xl lg:text-3xl font-bold">
+            <a href={`/professors/${professor.id}`} className="hover:underline hover:decoration-ub-secondary">
+              {professor.name}
+            </a>
+          </h1>
           <p className="text-sm text-gray-500">{professor.faculty} · {professor.major}</p>
           <div className="mt-5 flex">
             <div className="">
