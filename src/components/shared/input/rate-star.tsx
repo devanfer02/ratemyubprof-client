@@ -1,30 +1,31 @@
-import { Icon } from "@iconify/react/dist/iconify.js";
-import { 
-  FieldValues, 
-} from "react-hook-form";
+"use client"
 
-type RatingStarProps<T extends FieldValues> = {
+import { Icon } from "@iconify/react/dist/iconify.js";
+
+type RatingStarProps = {
   rate: number;
+  rateName: string;
   onClick: (rate: number) => void;
   hoveredIndex: number;
   setHoveredIndex: (index: number) => void;
 }
 
-const RatingStar = <T extends FieldValues>({
+const RatingStar = ({
   rate,
+  rateName,
   onClick,
   hoveredIndex,
   setHoveredIndex,
-}: RatingStarProps<T>) => {
+}: RatingStarProps) => {
   return (
     <>
       {[1, 2, 3, 4, 5].map((index) => (
         <Icon
-          key={index}
+          key={rateName + index}
           icon="bxs:star"
           width={50}
           height={50}
-          className={`cursor-pointer transition-colors mx-2 ${(rate !== 0 ? rate : hoveredIndex) >= index
+          className={`cursor-pointer transition-colors mx-2 ${(rate && rate !== 0 ? rate : hoveredIndex) >= index
             ? "text-ub-secondary"
             : "text-ub-primary"
             }`}

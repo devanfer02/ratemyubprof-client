@@ -5,13 +5,12 @@ import { Card } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
 import { createReview } from "@/services/review"
-import { Icon } from "@iconify/react/dist/iconify.js"
 import { Loader2 } from "lucide-react"
 import { useState } from "react"
 import { useForm } from "react-hook-form"
-import ProfessorIDCard from "../professors/id-card"
 import Image from "next/image"
 import RatingStar from "@/components/shared/input/rate-star"
+import { redirect } from "next/navigation"
 
 type ReviewFormParams = {
   professor: Professor
@@ -47,6 +46,7 @@ export default function ReviewForm({ professor }: ReviewFormParams) {
       return
     }
     setApiState({ isLoading: false, error: null })
+    redirect(`/professors/${professor.id}`)    
   }
 
   return (
@@ -64,9 +64,10 @@ export default function ReviewForm({ professor }: ReviewFormParams) {
           <hr />
           <form className="mt-5" onSubmit={handleSubmit(submitHandler)}>
             <div className="my-5">
-              <p>How would you rate the difficulty of the professor’s class?</p>
+              <p>How would you rate the difficulty of the professor's class?</p>
               <div className="flex flex-row mt-2">
                 <RatingStar
+                  rateName="difficultyRate"
                   rate={diffRate}
                   hoveredIndex={hoveredDiffIndex}
                   setHoveredIndex={setHoveredDiffIndex}
@@ -83,6 +84,7 @@ export default function ReviewForm({ professor }: ReviewFormParams) {
               <p>How would you rate the professor's friendliness in class?</p>
               <div className="flex flex-row mt-2">
                 <RatingStar
+                  rateName="friendlyRate"
                   rate={friendlyRate}
                   hoveredIndex={hoveredFriendIndex}
                   setHoveredIndex={setHoveredFriendIndex}
@@ -97,13 +99,19 @@ export default function ReviewForm({ professor }: ReviewFormParams) {
             </div>
             <div className="">
               <p>Tell us about your experience with this professor</p>
-              <Textarea {...register("comment")} className="resize-none mt-2" rows={10} />
+              <Textarea {...register("comment", {required: true})} className="resize-none mt-2" rows={10} required/>
+              {errors.comment && (
+                  <p className="text-red-500 text-sm">{errors.comment.message}</p>
+              )}
             </div>
             <div className="my-5">
               <Button className="rounded-lg bg-ub-secondary hover:bg-white border border-ub-secondary hover:text-ub-secondary w-full" disabled={apiState.isLoading}>
                 {apiState.isLoading && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
                 {apiState.isLoading ? "Loading..." : "Submit your review!"}
               </Button>
+              {apiState.error && (
+                <p className="text-red-500">An error occured when trying to create review!</p>
+              )}
             </div>
           </form>
         </div>
