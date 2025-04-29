@@ -4,6 +4,37 @@ import { authOptions } from "@/app/api/auth/[...nextauth]/options"
 import { env } from "@/lib/env"
 import { getServerSession } from "next-auth"
 
+export async function createReview(profId: string, payload: ReviewFormData): Promise<Error | null> {
+  try {
+    const session = await getServerSession(authOptions)
+    const userToken = session?.user.accessToken;
+
+    if (!userToken) {
+      return new Error("User token not found")
+    }
+
+    const res = await fetch(`${env.API_BASE_URL}/professors/${profId}/reviews`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "RMUBP-API-KEY": env.API_KEY,
+        "Authorization": `Bearer ${userToken}`,
+      },
+      body: JSON.stringify(payload)
+    })
+
+    const data = await res.json()
+
+    if (!res.ok) {
+      return Error((data.message) || "Failed to create review")
+    }
+
+    return null 
+  } catch (err) {
+    return new Error("An error occurred while creating review")
+  }
+}
+
 export async function fetchReviewByProfessorId(id: string, page: string, reviewId: string = ""): Promise<[Review[] | null, PaginationMeta | null, Error | null]> {
   try {
     const session = await getServerSession(authOptions)

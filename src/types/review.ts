@@ -12,3 +12,10 @@ type Review = {
   user: User
   professor: Professor
 }
+
+type ReviewFormData = {
+  profId: string;
+  comment: string;
+  diffRate: number;
+  friendlyRate: number;
+}
