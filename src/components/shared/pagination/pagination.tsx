@@ -10,13 +10,14 @@ import {
   PaginationPrevious,
 } from "@/components/ui/pagination"
 import { usePathname, useSearchParams } from "next/navigation"
+import { Suspense } from "react"
 
 type PaginationProps = {
   meta: PaginationMeta
   path: string
 }
 
-export function PaginationUI({ meta }: PaginationProps) {
+function PaginationButtons({ meta }: PaginationProps) {
   const pathname = usePathname()
   const searchParams = useSearchParams()
 
@@ -56,5 +57,13 @@ export function PaginationUI({ meta }: PaginationProps) {
         )}
       </PaginationContent>
     </Pagination>
+  )
+}
+
+export function PaginationUI({meta, path}: PaginationProps) {
+  return (
+    <Suspense fallback={<div>Loading</div>}>
+      <PaginationButtons meta={meta} path={path}/>
+    </Suspense>
   )
 }

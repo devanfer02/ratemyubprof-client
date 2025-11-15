@@ -3,13 +3,13 @@
 import AuthDialog from "@/components/shared/dialog/auth";
 import RegisterForm from "./register-form";
 import LoginForm from "./login-form";
-import { useEffect, useState } from "react";
+import { Suspense, useEffect, useState } from "react";
 import { useSearchParams, useRouter } from "next/navigation";
 import { signOut, useSession } from "next-auth/react";
 import { Button } from "@/components/ui/button";
 import { Skeleton } from "@/components/ui/skeleton";
 
-export default function AuthButtons() {
+function AuthButtonUI() {
   const searchParams = useSearchParams()
   const router = useRouter()
   const { status } = useSession();
@@ -60,5 +60,13 @@ export default function AuthButtons() {
         <RegisterForm onSwitch={() => setOpenDialog("signin")}/>
       </AuthDialog>
     </>
+  )
+}
+
+export default function AuthButtons() {
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <AuthButtonUI/>
+    </Suspense>
   )
 }
