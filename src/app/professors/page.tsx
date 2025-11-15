@@ -4,13 +4,13 @@ import { PaginationUI } from "@/components/shared/pagination/pagination";
 import { fetchProfessors } from "@/services/professor"
 import Image from "next/image";
 
-export default async function Test({ searchParams }: { searchParams: { [key: string]: string } }) {
-  searchParams = await searchParams
+export default async function Test({ searchParams }: { searchParams: Promise<{ [key: string]: string }> }) {
+  const searchParam = await searchParams
   const params = {
-    name: searchParams.name || "",
-    faculty: searchParams.faculty || "",
-    major: searchParams.major || "",
-    page: Math.max(1, parseInt(searchParams.page || '1', 10)).toString()
+    name: searchParam.name || "",
+    faculty: searchParam.faculty || "",
+    major: searchParam.major || "",
+    page: Math.max(1, parseInt(searchParam.page || '1', 10)).toString()
   } as FetchProfParam
 
   const [profs, meta, error] = await fetchProfessors(params)

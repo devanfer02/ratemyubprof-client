@@ -4,15 +4,10 @@ import DistributionCard from "@/components/shared/card/distribution-card"
 import { fetchProfessorById } from "@/services/professor"
 import Image from "next/image"
 
-type ReviewSharedPageProps = {
-  params: {
-    id: string
-    reviewId: string
-  }
-}
+type ReviewSharedPageParams = Promise<{id: string, reviewId: string}>
 
-export default async function ReviewSharedPage({ params }: ReviewSharedPageProps) {
-  const { id, reviewId } = params
+export default async function ReviewSharedPage(props: { params: ReviewSharedPageParams }) {
+  const { id, reviewId } = await props.params
   
   const [professor, profMeta, profErr] = await fetchProfessorById(id);
   

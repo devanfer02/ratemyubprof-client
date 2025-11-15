@@ -2,14 +2,10 @@ import ReviewForm from "@/components/page/review/review-form";
 import { fetchProfessorById } from "@/services/professor";
 import Image from "next/image";
 
-type ReviewProfessorProps = {
-  params: {
-    id: string 
-  }
-}
+type ReviewProfessorParams = Promise<{ id: string }>;
 
-export default async function ReviewProfessor({params}: ReviewProfessorProps) {
-  const { id } = await params
+export default async function ReviewProfessor(props: { params: ReviewProfessorParams }) {
+  const { id } = await props.params
 
   const [professor, _, profErr] = await fetchProfessorById(id);
   
