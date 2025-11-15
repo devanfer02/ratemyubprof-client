@@ -1,15 +1,12 @@
-FROM node:18-alpine AS base
+FROM oven/bun:1.3-alpine AS base
 
 # 1. Install
 FROM base AS deps
 RUN apk add --no-cache libc6-compat
 WORKDIR /app
 
-# Install pnpm directly using npm
-RUN npm install -g pnpm
-
-COPY package.json pnpm-lock.yaml* ./
-RUN pnpm i --frozen-lockfile
+COPY package.json bun.lockb* ./
+RUN bun install --frozen-lockfile
 
 # 2. Build
 FROM base AS builder
@@ -20,9 +17,10 @@ COPY . .
 # Next.js collects completely anonymous telemetry data about general usage.
 # Learn more here: https://nextjs.org/telemetry
 # Uncomment the following line in case you want to disable telemetry during the build.
-# ENV NEXT_TELEMETRY_DISABLED=1
 
-RUN npm install -g pnpm && pnpm run build
+ENV NEXT_TELEMETRY_DISABLED=1
+
+RUN bun run build
 
 # 3. Run
 FROM base AS runner
@@ -45,4 +43,4 @@ COPY --from=builder --chown=nextjs:nodejs /app/.next/static ./.next/static
 USER nextjs
 EXPOSE 3000
 ENV HOSTNAME="0.0.0.0"
-CMD ["node", "server.js"]
+CMD ["bun", "server.js"]
