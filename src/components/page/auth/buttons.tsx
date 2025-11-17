@@ -8,11 +8,12 @@ import { useSearchParams, useRouter } from "next/navigation";
 import { signOut, useSession } from "next-auth/react";
 import { Button } from "@/components/ui/button";
 import { Skeleton } from "@/components/ui/skeleton";
+import Link from "next/link";
 
 function AuthButtonUI() {
   const searchParams = useSearchParams()
   const router = useRouter()
-  const { status } = useSession();
+  const { data, status } = useSession();
 
   const [openDialog, setOpenDialog] = useState<"signin" | "signup" | null>(null);
 
@@ -48,7 +49,14 @@ function AuthButtonUI() {
   }
 
   if (status === "authenticated") {
-    return <Button className="bg-ub-secondary text-white hover:bg-white hover:text-ub-secondary" onClick={() => logout()}>Sign out</Button>
+    return (
+      <div className="flex gap-x-5">
+        <Link href="/user/profile" className="text-white flex items-center font-semibold hover:text-ub-secondary duration-200">
+          My Profile
+        </Link>
+        <Button className="bg-ub-secondary text-white hover:bg-white hover:text-ub-secondary" onClick={() => logout()}>Sign out</Button>
+      </div>
+    )
   }
 
   return (
