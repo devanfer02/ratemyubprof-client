@@ -130,11 +130,11 @@ export default function ReviewForm({ professor }: ReviewFormParams) {
               )}
             </div>
             <div className="my-5">
-              <Button className="rounded-lg bg-ub-secondary hover:bg-white border border-ub-secondary hover:text-ub-secondary w-full py-5 my-3" disabled={apiState.isLoading}>
+              <Button className="rounded-lg bg-ub-secondary font-semibold hover:bg-white border border-ub-secondary hover:text-ub-secondary w-full py-5 my-3" disabled={apiState.isLoading}>
                 {apiState.isLoading && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
                 {apiState.isLoading ? "Loading..." : "SUBMIT YOUR REVIEW!"}
               </Button>
-              <Button className="rounded-lg bg-ub-primary hover:bg-white border border-ub-primary hover:text-ub-primary w-full py-5">
+              <Button className="rounded-lg bg-ub-primary font-semibold hover:bg-white border border-ub-primary hover:text-ub-primary w-full py-5">
                 Cancel
               </Button>
               {apiState.error && (
