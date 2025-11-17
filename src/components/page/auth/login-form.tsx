@@ -34,7 +34,7 @@ export default function LoginForm({onSwitch}: RegisterFormProps) {
       const res = await signIn("credentials", {
         username: data.username,
         password: data.password,
-        redirect: true,
+        redirect: false,
         callbackUrl: params.get("callbackUrl") || path,
       })
 
@@ -49,6 +49,9 @@ export default function LoginForm({onSwitch}: RegisterFormProps) {
         setError(new Error(res?.error || "An error occurred while logging in"))
       }
 
+      if (res?.ok && res.url) {
+        window.location.href = res.url;
+      }
 
     } catch (err) {
       setError(err as Error)
