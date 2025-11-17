@@ -1,0 +1,134 @@
+{
+  "message": "Successfully fetch user profile",
+  "data": {
+      "user": {
+          "id": "0347884e-da66-47e3-87f0-2c20aacbcdf6",
+          "nim": "31474709",
+          "username": "Bruen4102",
+          "createdAt": "2025-04-18 23:21:30.458616 +0000 +0000"
+      },
+      "reviewsCount": 4,
+      "recentReviews": [
+          {
+              "id": "027e275b-6f2c-4426-8c81-ddbb8f4aa68d",
+              "profId": "01JRQ4SZJRYZNFJAY7GA4YR72V",
+              "userId": "0347884e-da66-47e3-87f0-2c20aacbcdf6",
+              "comment": "Unless group there still by week to yourselves whose for.",
+              "difficultyRating": 3.1025229,
+              "friendlyRating": 1.919004,
+              "createdAt": "2025-04-18 23:57:45.542295 +0000 +0000",
+              "isLiked": 0,
+              "like": 0,
+              "dislike": 1,
+              "user": {
+                  "id": "0347884e-da66-47e3-87f0-2c20aacbcdf6",
+                  "nim": "",
+                  "username": "Bruen4102",
+                  "createdAt": "0001-01-01 00:00:00 +0000 UTC"
+              },
+              "professor": {
+                  "id": "01JRQ4SZJRYZNFJAY7GA4YR72V",
+                  "name": "ABD. AZIZ AMIN S.Pi., M.Sc.",
+                  "faculty": "Fakultas Perikanan dan Ilmu Kelautan",
+                  "major": "Program Studi Sarjana Manajemen Sumberdaya Perairan",
+                  "profileImgLink": "https://apps.ub.ac.id/upload/kepegawaian/2024/03/22/20240322_094138_264428.jpeg",
+                  "reviewsCount": 0,
+                  "avgDiffRate": 0,
+                  "avgFriendlyRate": 0,
+                  "createdAt": "0001-01-01 00:00:00",
+                  "updatedAt": "0001-01-01 00:00:00"
+              }
+          },
+          {
+              "id": "3691a2d4-9cf1-4aad-acd3-7b7a43d56ddf",
+              "profId": "01JRQ4SZJSXE4WQFYTH2PBYG23",
+              "userId": "0347884e-da66-47e3-87f0-2c20aacbcdf6",
+              "comment": "Government any for secondly upon day those there while monkey.",
+              "difficultyRating": 4.7978735,
+              "friendlyRating": 1.0092975,
+              "createdAt": "2025-04-18 23:57:45.542295 +0000 +0000",
+              "isLiked": 0,
+              "like": 0,
+              "dislike": 0,
+              "user": {
+                  "id": "0347884e-da66-47e3-87f0-2c20aacbcdf6",
+                  "nim": "",
+                  "username": "Bruen4102",
+                  "createdAt": "0001-01-01 00:00:00 +0000 UTC"
+              },
+              "professor": {
+                  "id": "01JRQ4SZJSXE4WQFYTH2PBYG23",
+                  "name": "Dr. dr. HERMAN YOSEF LIMPAT WIHASTYOKO Sp.BP(K)., Sp.BP., Subsp. K.M(K).",
+                  "faculty": "Fakultas Kedokteran",
+                  "major": "Program Studi Pendidikan Dokter Spesialis Ilmu Bedah",
+                  "profileImgLink": "https://apps.ub.ac.id/upload/kepegawaian/2015/09/19/20150919_141019_7026.jpg",
+                  "reviewsCount": 0,
+                  "avgDiffRate": 0,
+                  "avgFriendlyRate": 0,
+                  "createdAt": "0001-01-01 00:00:00",
+                  "updatedAt": "0001-01-01 00:00:00"
+              }
+          },
+          {
+              "id": "53138fa8-da83-4e8a-9290-88424feeed2a",
+              "profId": "01JRQ4SZJTS0TGM6VS50MEG970",
+              "userId": "0347884e-da66-47e3-87f0-2c20aacbcdf6",
+              "comment": "Infrequently mine wow nevertheless talent whichever next rubbish religion e.g..",
+              "difficultyRating": 1.4012926,
+              "friendlyRating": 3.438881,
+              "createdAt": "2025-04-18 23:57:45.542295 +0000 +0000",
+              "isLiked": 0,
+              "like": 0,
+              "dislike": 0,
+              "user": {
+                  "id": "0347884e-da66-47e3-87f0-2c20aacbcdf6",
+                  "nim": "",
+                  "username": "Bruen4102",
+                  "createdAt": "0001-01-01 00:00:00 +0000 UTC"
+              },
+              "professor": {
+                  "id": "01JRQ4SZJTS0TGM6VS50MEG970",
+                  "name": "Ir. TRI ASTOTO KURNIAWAN S.T., M.T., Ph.D.",
+                  "faculty": "Fakultas Ilmu Komputer",
+                  "major": "Program Studi Magister Ilmu Komputer",
+                  "profileImgLink": "https://apps.ub.ac.id/upload/kepegawaian/2016/09/14/20160914_102741_3760.jpg",
+                  "reviewsCount": 0,
+                  "avgDiffRate": 0,
+                  "avgFriendlyRate": 0,
+                  "createdAt": "0001-01-01 00:00:00",
+                  "updatedAt": "0001-01-01 00:00:00"
+              }
+          },
+          {
+              "id": "989f2ac0-c1bc-45a2-8853-e24459728745",
+              "profId": "01JRQ4SZJSXE4WQFYVB3AJMYMW",
+              "userId": "0347884e-da66-47e3-87f0-2c20aacbcdf6",
+              "comment": "Whose where aid here could double Cormoran win tonight stand.",
+              "difficultyRating": 3.6278598,
+              "friendlyRating": 1.0659226,
+              "createdAt": "2025-04-18 23:57:45.542295 +0000 +0000",
+              "isLiked": 0,
+              "like": 0,
+              "dislike": 0,
+              "user": {
+                  "id": "0347884e-da66-47e3-87f0-2c20aacbcdf6",
+                  "nim": "",
+                  "username": "Bruen4102",
+                  "createdAt": "0001-01-01 00:00:00 +0000 UTC"
+              },
+              "professor": {
+                  "id": "01JRQ4SZJSXE4WQFYVB3AJMYMW",
+                  "name": "MAYUKO GALUH MAHARDIKA S.IP., M.IP.",
+                  "faculty": "Fakultas Ilmu Sosial dan Ilmu Politik",
+                  "major": "Program Studi Sarjana Ilmu Pemerintahan",
+                  "profileImgLink": "https://apps.ub.ac.id/upload/kepegawaian/2023/05/24/20230524_092537_197217.jpg",
+                  "reviewsCount": 0,
+                  "avgDiffRate": 0,
+                  "avgFriendlyRate": 0,
+                  "createdAt": "0001-01-01 00:00:00",
+                  "updatedAt": "0001-01-01 00:00:00"
+              }
+          }
+      ]
+  }
+}

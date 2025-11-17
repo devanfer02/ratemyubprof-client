@@ -58,7 +58,7 @@ export default function ReviewCard({ review, status }: ReviewCardProps) {
     <div className="bg-white dark:bg-zinc-900 rounded-2xl shadow-md p-6 space-y-3">
       <div className="flex items-center justify-between">
         <div className="text-sm text-zinc-500">
-          By <span className="font-medium text-zinc-700 dark:text-zinc-200">{review.user.username}</span>
+          By <a className="font-medium text-zinc-700 dark:text-zinc-200 hover:text-ub-secondary duration-200" href={`/user/profile/${review.user.username}`}>{review.user.username}</a>
           <br />
         </div>
         <div className="text-xs text-zinc-400">{formatDate(review.createdAt)}

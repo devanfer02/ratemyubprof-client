@@ -12,5 +12,5 @@ export function mainMiddleware(request: NextRequest) {
   return NextResponse.next();
 }
 
-export default withAuth(mainMiddleware, ["/dashboard", new RegExp("^/professors/[^/]+/review$")])
+export default withAuth(mainMiddleware, ["/dashboard", new RegExp("^/professors/[^/]+/review$"), new RegExp("^/user/profile$")])
 
