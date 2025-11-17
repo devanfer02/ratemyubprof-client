@@ -3,7 +3,6 @@
 import {
   Pagination,
   PaginationContent,
-  PaginationEllipsis,
   PaginationItem,
   PaginationLink,
   PaginationNext,
@@ -11,6 +10,7 @@ import {
 } from "@/components/ui/pagination"
 import { usePathname, useSearchParams } from "next/navigation"
 import { Suspense } from "react"
+import PaginationFallback from "./fallback"
 
 type PaginationProps = {
   meta: PaginationMeta
@@ -62,7 +62,7 @@ function PaginationButtons({ meta }: PaginationProps) {
 
 export function PaginationUI({meta, path}: PaginationProps) {
   return (
-    <Suspense fallback={<div>Loading</div>}>
+    <Suspense fallback={<PaginationFallback/>}>
       <PaginationButtons meta={meta} path={path}/>
     </Suspense>
   )
