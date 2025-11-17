@@ -11,6 +11,7 @@ import { useForm } from "react-hook-form"
 import Image from "next/image"
 import RatingStar from "@/components/shared/input/rate-star"
 import { redirect } from "next/navigation"
+import { isBadWord } from "@/lib/string"
 
 type ReviewFormParams = {
   professor: Professor
@@ -21,6 +22,17 @@ type ApiState = {
   error: Error | null;
 }
 
+function testBadWord(value: string): boolean | string {
+  const check = isBadWord(value)
+
+  if (check) {
+    return "Submitted comment containt harsh words"
+  }
+
+  return true 
+}
+
+
 export default function ReviewForm({ professor }: ReviewFormParams) {
   const {
     register,
@@ -29,7 +41,9 @@ export default function ReviewForm({ professor }: ReviewFormParams) {
     getValues,
     watch,
     formState: { errors },
-  } = useForm<ReviewFormData>()
+  } = useForm<ReviewFormData>({
+    mode: "onChange"
+  })
   const [hoveredDiffIndex, setHoveredDiffIndex] = useState<number>(0)
   const [hoveredFriendIndex, setHoveredFriendIndex] = useState<number>(0)
   const [apiState, setApiState] = useState<ApiState>({ isLoading: false, error: null } as ApiState)
@@ -46,7 +60,7 @@ export default function ReviewForm({ professor }: ReviewFormParams) {
       return
     }
     setApiState({ isLoading: false, error: null })
-    redirect(`/professors/${professor.id}`)    
+    redirect(`/professors/${professor.id}`)
   }
 
   return (
@@ -65,6 +79,9 @@ export default function ReviewForm({ professor }: ReviewFormParams) {
           <form className="mt-5" onSubmit={handleSubmit(submitHandler)}>
             <div className="my-5">
               <p>How would you rate the difficulty of the professor's class?</p>
+              <p className="text-sm text-gray-500">
+                e.g., project workload, assignment, subject difficulty, overall workload
+              </p>
               <div className="flex flex-row mt-2">
                 <RatingStar
                   rateName="difficultyRate"
@@ -82,6 +99,9 @@ export default function ReviewForm({ professor }: ReviewFormParams) {
             </div>
             <div className="my-5">
               <p>How would you rate the professor's friendliness in class?</p>
+              <p className="text-sm text-gray-500">
+                e.g., approachability, responsiveness, helpfulness, positive attitude
+              </p>
               <div className="flex flex-row mt-2">
                 <RatingStar
                   rateName="friendlyRate"
@@ -99,15 +119,18 @@ export default function ReviewForm({ professor }: ReviewFormParams) {
             </div>
             <div className="">
               <p>Tell us about your experience with this professor</p>
-              <Textarea {...register("comment", {required: true})} className="resize-none mt-2" rows={10} required/>
+              <Textarea {...register("comment", { required: true, validate: testBadWord })} className="border border-ub-primary bg-gray-100 resize-none mt-2" rows={10} required />
               {errors.comment && (
-                  <p className="text-red-500 text-sm">{errors.comment.message}</p>
+                <p className="text-red-500 text-sm">{errors.comment.message}</p>
               )}
             </div>
             <div className="my-5">
-              <Button className="rounded-lg bg-ub-secondary hover:bg-white border border-ub-secondary hover:text-ub-secondary w-full" disabled={apiState.isLoading}>
+              <Button className="rounded-lg bg-ub-secondary hover:bg-white border border-ub-secondary hover:text-ub-secondary w-full py-5 my-3" disabled={apiState.isLoading}>
                 {apiState.isLoading && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
-                {apiState.isLoading ? "Loading..." : "Submit your review!"}
+                {apiState.isLoading ? "Loading..." : "SUBMIT YOUR REVIEW!"}
+              </Button>
+              <Button className="rounded-lg bg-ub-primary hover:bg-white border border-ub-primary hover:text-ub-primary w-full py-5">
+                Cancel
               </Button>
               {apiState.error && (
                 <p className="text-red-500">An error occured when trying to create review!</p>

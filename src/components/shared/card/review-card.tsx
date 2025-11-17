@@ -9,13 +9,14 @@ import { toast } from "sonner";
 
 type ReviewCardProps = {
   review: Review
-  status: "loading" | "authenticated" | "unauthenticated"
+  status: "loading" | "authenticated" | "unauthenticated",
+  showProf?: boolean
 }
 
-export default function ReviewCard({ review, status }: ReviewCardProps) {
+export default function ReviewCard({ review, status, showProf }: ReviewCardProps) {
   const [like, setLike] = useState(review.like);
   const [dislike, setDislike] = useState(review.dislike);
-  const [reacted, setReacted] = useState(review.isLiked); 
+  const [reacted, setReacted] = useState(review.isLiked);
 
   const copyToClipboard = () => {
     const redirect = String(window.location.href)
@@ -33,33 +34,38 @@ export default function ReviewCard({ review, status }: ReviewCardProps) {
 
   const handleReaction = async (reactionType: string) => {
     if (status === "unauthenticated") {
-      return 
+      return
     }
 
     const isLike = reactionType === "like";
     const newReaction = isLike ? 1 : 2;
-  
+
     if (reacted === newReaction) {
       await deleteReaction(review.id);
       setReacted(0);
       isLike ? setLike((prev) => prev - 1) : setDislike((prev) => prev - 1);
       return;
     }
-  
+
     if (reacted === 1) setLike((prev) => prev - 1);
     if (reacted === 2) setDislike((prev) => prev - 1);
-  
+
     isLike ? setLike((prev) => prev + 1) : setDislike((prev) => prev + 1);
     await createReaction(review.id, reactionType);
     setReacted(newReaction);
   };
-  
+
   return (
     <div className="bg-white dark:bg-zinc-900 rounded-2xl shadow-md p-6 space-y-3">
       <div className="flex items-center justify-between">
         <div className="text-sm text-zinc-500">
           By <a className="font-medium text-zinc-700 dark:text-zinc-200 hover:text-ub-secondary duration-200" href={`/user/profile/${review.user.username}`}>{review.user.username}</a>
           <br />
+          {showProf && (
+            <>
+              Regarding Prof <a className="font-medium text-zinc-700 dark:text-zinc-200 hover:text-ub-secondary duration-200" href={`/professors/${review.professor.id}`}>{review.professor.name}</a>
+            </>
+          )}
         </div>
         <div className="text-xs text-zinc-400">{formatDate(review.createdAt)}
         </div>
