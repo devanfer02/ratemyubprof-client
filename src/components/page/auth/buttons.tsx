@@ -65,7 +65,7 @@ function AuthButtonUI() {
 
 export default function AuthButtons() {
   return (
-    <Suspense fallback={<div>Loading...</div>}>
+    <Suspense fallback={<Skeleton className="h-9 w-22 rounded-md bg-zinc-300" />}>
       <AuthButtonUI/>
     </Suspense>
   )
