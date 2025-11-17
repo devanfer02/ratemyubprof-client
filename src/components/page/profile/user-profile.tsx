@@ -9,7 +9,7 @@ type UserProfileProps = {
   status: "authenticated" | "unauthenticated"
 }
 
-export default async function UserProfile({userProfile, status}: UserProfileProps) {
+export default async function UserProfile({ userProfile, status }: UserProfileProps) {
 
   return (
     <div className="container mx-auto mt-8 mb-10 min-h-screen">
@@ -33,7 +33,7 @@ export default async function UserProfile({userProfile, status}: UserProfileProp
                     )}
                   </p>
                 </div>
-              </div>  
+              </div>
               <table className="table-auto border-collapse">
                 <tbody>
                   <tr className="h-8">
@@ -49,9 +49,13 @@ export default async function UserProfile({userProfile, status}: UserProfileProp
         <div className="md:col-span-2">
           <h2 className="mb-4 text-xl font-bold">Recent Reviews</h2>
           <div className="space-y-4 max-h-[700px] overflow-y-auto">
-            {userProfile.recentReviews.map((review) => (
-              <ReviewCard review={review} status={status} key={review.id} />
-            ))}
+            {userProfile.recentReviews.length!! ? (
+              userProfile.recentReviews.map((review) => (
+                <ReviewCard review={review} status={status} key={review.id} showProf/>
+              ))
+            ) : (
+              <div className="h-[100px] flex flex-col items-center jusitfy-center text-2xl font-bold text-ub-secondary">No reviews yet</div>
+            )}
           </div>
         </div>
       </div>
