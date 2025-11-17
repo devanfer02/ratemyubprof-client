@@ -93,6 +93,7 @@ export default function ReviewForm({ professor }: ReviewFormParams) {
                     setValue("diffRate", newDiffRate);
                     setHoveredDiffIndex(newDiffRate);
                   }}
+                  description="From eh pretty easy to you wont endure this class more than 1 meeting"
                 />
                 <Input type="hidden" {...register("diffRate", { required: true })} />
               </div>
@@ -113,12 +114,16 @@ export default function ReviewForm({ professor }: ReviewFormParams) {
                     setValue("friendlyRate", newFriendRate);
                     setHoveredFriendIndex(newFriendRate);
                   }}
+                  description="From very cold and unapproachable to extremely friendly and helpful"
                 />
                 <Input type="hidden" {...register("friendlyRate", { required: true })} />
               </div>
             </div>
             <div className="">
               <p>Tell us about your experience with this professor</p>
+              <p className="text-sm text-gray-500">
+                e.g., teaching style, approachability, workload, overall impression
+              </p>
               <Textarea {...register("comment", { required: true, validate: testBadWord })} className="border border-ub-primary bg-gray-100 resize-none mt-2" rows={10} required />
               {errors.comment && (
                 <p className="text-red-500 text-sm">{errors.comment.message}</p>
